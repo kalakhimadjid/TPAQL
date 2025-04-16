@@ -21,7 +21,6 @@ Stack S=new Stack();
         S.pop();
         assertTrue(S.isEmpty());
     }
-
     @Test
     void peek() {
         S.push(5);
