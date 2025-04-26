@@ -77,3 +77,80 @@ On doit cree la classe Utilisateur :
   - import org.mockito.junit.jupiter.MockitoExtension;
   - @ExtendWith(MockitoExtension.class)
 ---
+## Exercice 3 - UserService (Scénarios avancés)
+
+### 1. Scénarios testés
+
+- **Exception** : Simuler un échec de création d'utilisateur avec levée de `ServiceException`.
+- **Erreur de validation** : Vérifier que l'API n'est jamais appelée si l'utilisateur est invalide (avec `never()`).
+- **ID après création** : Vérifier que l'ID est bien attribué après création.
+- **Capture d'arguments** : Utiliser `ArgumentCaptor` pour capturer et vérifier les données passées à l'API.
+
+### 2. Type de test
+
+Ce sont des **tests d'interactions** :
+- On vérifie comment `UserService` interagit avec `UtilisateurApi`.
+- On capture et vérifie les valeurs transmises.
+
+
+### 3. Résumé Mockito utilisé
+
+| Action | Mockito utilisé |
+|:------:|:---------------:|
+| Forcer exception | `doThrow().when(mock).method()` |
+| Vérifier aucune interaction | `verify(mock, never())` |
+| Capturer arguments | `ArgumentCaptor.forClass()` |
+- when(T) in 'org.mockito.Mockito' cannot be applied to '(void)'
+---
+## Exercice 4 - Jeu du 7
+### 1. Objets mockés
+Les objets suivants sont forcément mockés :
+
+-  De : pour contrôler les valeurs des lancers (éviter le hasard).
+-  Joueur : pour contrôler les mises, simuler une insolvabilité, etc.
+-  Banque : pour contrôler le solde, tester la solvabilité, etc.
+
+ Ces objets sont mockés car ils représentent des dépendances externes dont on veut isoler les effets pour tester uniquement le comportement de la méthode jouer().
+
+### 2. Tests écrits
+
+1.  TestJeuFerme  
+    - Le jeu est fermé, une exception est levée.  
+    - Test d’état.
+2. TestJoueurInsolvable  
+   - Le joueur ne peut pas payer la mise (DebitImpossibleException).  
+   - On vérifie que les dés ne sont pas lancés.  
+   - Test d’interaction.
+
+3.  TestPerte  
+    - La somme des dés ≠ 7, le joueur perd sa mise.  
+    - Test d’interaction (vérification de debit/credit).
+
+4.  TestVictoire
+    - La somme des dés = 7 → gain crédité au joueur.  
+    - La banque débite et le joueur crédite.  
+    - Test d’interaction.
+
+5. TestBanqueInsolvable  
+    - Le joueur gagne, mais la banque devient insolvable.  
+    - Le jeu se ferme après ce tour.  
+    - Test d’état.
+###  Test avec vraie implémentation de Banque
+
+Une classe BanqueImpl a été créée avec :
+
+- solde
+- fond minimum
+- logique de solvabilité
+
+Un test avec BanqueImpl (non mocké) a été ajouté.  
+Cela permet de tester le comportement intégré, et non isolé.
+### 3. Type de tests
+
+- Tests d'état : vérification de l'état du jeu (ouvert/fermé).
+- Tests d'interaction : vérifier les appels aux méthodes (`debiter`, `crediter`, `lancer`, etc.)
+
+
+### 4. Remarque importante
+
+En cas de gain, si la banque devient insolvable, le gain est donné, puis le jeu se ferme immédiatement après.
