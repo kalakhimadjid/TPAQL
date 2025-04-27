@@ -2,6 +2,8 @@
 
 ---
 ## Exercice 1 - Calculatrice
+### 0. Les classe utilisee :
+- Calculatrice
 
 ### 1. Test effectué
 
@@ -31,7 +33,7 @@ C'est à la fois :
     - permet de récupérer result avec getState()
 ### Erreur de dependences
 - JUnit 5 n'utilise plus @RunWith, il utilise @ExtendWith.
-- Donc tu remplace :
+- Donc on remplace :
   - import org.junit.runner.RunWith;
   - import org.mockito.junit.MockitoJUnitRunner;
   - @RunWith(MockitoJUnitRunner.class)
@@ -41,7 +43,11 @@ C'est à la fois :
   - @ExtendWith(MockitoExtension.class)
  ---
 ## Exercice 2 - UserService
-
+### 0. Les classe utilisee :
+- UserSevice
+- Utilisateur
+- UtilisateurApi
+- ServiceException
 ### 1. Objectif
 
 Tester que la méthode `creerUtilisateur()` de la classe `UserService` appelle bien la méthode `creerUtilisateur()` du `UtilisateurApi`.
@@ -78,7 +84,11 @@ On doit cree la classe Utilisateur :
   - @ExtendWith(MockitoExtension.class)
 ---
 ## Exercice 3 - UserService (Scénarios avancés)
-
+### 0. Les classe utilisee :
+- UserSevice
+- Utilisateur
+- UtilisateurApi
+- ServiceException
 ### 1. Scénarios testés
 
 - **Exception** : Simuler un échec de création d'utilisateur avec levée de `ServiceException`.
@@ -103,6 +113,13 @@ Ce sont des **tests d'interactions** :
 - when(T) in 'org.mockito.Mockito' cannot be applied to '(void)'
 ---
 ## Exercice 4 - Jeu du 7
+### 0. Les classe utilisee :
+- Jeu
+- Joueur
+- Banque
+- De
+- DebitImpossibleException
+- JeuFermeException
 ### 1. Objets mockés
 Les objets suivants sont forcément mockés :
 
