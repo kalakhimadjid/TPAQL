@@ -41,3 +41,23 @@ Implémenter les classes `OrderController`, `OrderService`, et `OrderDao`, puis 
 - OrderController.createOrder(order) appelle bien : → OrderService.createOrder(order)
 - OrderService.createOrder(order) appelle bien : → OrderDao.saveOrder(order)
 - Les deux appels sont faits avec le bon objet Order (vérifié avec verify(mock, times(1))).
+
+---
+##  Exercice 3 – Intégration d'une API avec Mocking
+
+### 1. Objectif
+Mettre en place une classe `ProductService` qui appelle une API externe via une interface `ProductApiClient`, puis tester les interactions avec des objets mock.
+
+### 2. Structure du projet
+
+- `Product.java` : Classe modèle représentant un produit.
+- `ProductApiClient.java` : Interface simulant une API externe.
+- `ProductService.java` : Service qui utilise l'API client.
+- `ProductServiceTest.java` : Test JUnit avec mocking de l'appel API.
+
+### 3. Ce que le test vérifie
+
+- Que `ProductApiClient.getProduct` est appelé avec le bon identifiant.
+- Succès : le produit est bien retourné.
+- Erreur : simulation d'une exception levée par l'API.
+- Données absentes : retour null simulé.
