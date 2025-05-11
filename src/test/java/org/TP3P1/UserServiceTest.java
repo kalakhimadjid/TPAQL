@@ -1,4 +1,4 @@
-package org.TP3;
+package org.TP3P1;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
