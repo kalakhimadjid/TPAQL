@@ -1,2 +1,2 @@
-## REMARQUE :
-### chaque repertoire de tp contient son propre readme dans:
+# REMARQUE :
+## Chaque repertoire de tp dans chemin 'src/main/java/org' contient son propre readme 
